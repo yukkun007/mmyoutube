@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "==2.22.0"
+python-dotenv = "==0.10.5"
+oauth2client = "*"
+google-api-python-client = "*"
+
+[dev-packages]
+"flake8" = "==3.6.0"
+mypy = "==0.641"
+pytest = "==3.9.3"
+black = "==18.9b0"
+pytest-cov = "==2.6.0"
+sphinx = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+v = "python --version"
+start = "mmyoutube"
+ut = "py.test -v --capture=no --cov-config .coveragerc --cov=mmyoutube ."
+ut_fast = "py.test -v --duration=20 -m 'not slow' --capture=no --cov-config .coveragerc --cov=mmyoutube ."
+lint = "flake8 --max-line-length=100 --ignore=E203,W503 mmyoutube"
+doc = "./doc.sh"
