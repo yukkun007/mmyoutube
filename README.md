@@ -1,4 +1,4 @@
-# mmimage
+# mmyoutube
 
 ## 必要な環境変数
 
@@ -9,33 +9,33 @@ gyazo_access_token=<please specify gyazo access toke>
 ## インストール
 
 ```(sh)
-pip install git+https://github.com/yukkun007/mmimage
+pip install git+https://github.com/yukkun007/mmyoutube
 ```
 
 ## アップグレード
 
 ```(sh)
-pip install --upgrade git+https://github.com/yukkun007/mmimage
+pip install --upgrade git+https://github.com/yukkun007/mmyoutube
 ```
 
 ## 使い方 (モジュールを利用)
 
 ```(sh)
 python
->>> import mmimage
->>> mmimage.hello()
+>>> import mmyoutube
+>>> mmyoutube.random_get_video()
 ```
 
 ## 使い方 (コマンドラインアプリを実行)
 
 ```(sh)
-mmimage
+mmyoutube
 ```
 
 ## アンインストール
 
 ```(sh)
-pip uninstall mmimage
+pip uninstall mmyoutube
 ```
 
 ## 開発フロー
@@ -57,7 +57,7 @@ pip uninstall mmimage
         ```
 
 1. `pip install pipenv`
-1. `git clone git@github.com:yukkun007/mmimage.git`
+1. `git clone git@github.com:yukkun007/mmyoutube.git`
 1. `pipenv install --dev`
 
 ### install package
@@ -84,14 +84,14 @@ pip install -e .
 
 ```(sh)
 python
->>> import mmimage
->>> mmimage.hello()
+>>> import mmyoutube
+>>> mmyoutube.hello()
 ```
 
 ### コマンドラインアプリを実行
 
 ```(sh)
-pipenv run start (もしくはmmimage)
+pipenv run start (もしくはmmyoutube)
 ```
 
 ### unit test
@@ -114,7 +114,7 @@ pipenv run doc
 
 ### ソースコード配布物の作成
 
-dist/ 以下にmmimage-0.0.1.tar.gzが生成される。
+dist/ 以下にmmyoutube-0.0.1.tar.gzが生成される。
 
 ```(sh)
 python setup.py sdist
@@ -123,12 +123,12 @@ python setup.py sdist
 ### ソースコード配布物からpipでインストール
 
 ```(sh)
-pip install mmimage-0.0.1-tar.gz
+pip install mmyoutube-0.0.1-tar.gz
 ```
 
 ### ビルド済み配布物(wheel形式)の作成
 
-dist/ 以下にmmimage-0.0.1-py3-none-any.whlが生成される。
+dist/ 以下にmmyoutube-0.0.1-py3-none-any.whlが生成される。
 
 ```(sh)
 python setup.py bdist_wheel (wheelパッケージが必要)
@@ -137,7 +137,7 @@ python setup.py bdist_wheel (wheelパッケージが必要)
 ### ビルド済み配布物(wheel形式)からpipでインストール
 
 ```(sh)
-pip install mmimage-0.0.1-py3-none-any.whl
+pip install mmyoutube-0.0.1-py3-none-any.whl
 ```
 
 ## 参考
