@@ -118,3 +118,7 @@ dmypy.json
 
 # document (とりあえずまだコミットしない)
 docs/
+
+mmyoutube_client_secret.json
+mmyoutube_new_token.json
+mmyoutube_token_save.json

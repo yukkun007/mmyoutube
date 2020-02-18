@@ -25,7 +25,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.6",
-    install_requires=[],
+    install_requires=[
+        "python-dotenv",
+        "oauth2client",
+        "google-api-python-client",
+        "google-auth-oauthlib",
+    ],
     entry_points="""
         [console_scripts]
         {app} = {app}.cli:main
