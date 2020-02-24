@@ -14,16 +14,16 @@ logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-def random_get_video() -> Union[None, Video]:
-    return _get_video(_filter_none)
+def random_get_video(dotenv_path: str = None) -> Union[None, Video]:
+    return _get_video(_filter_none, dotenv_path)
 
 
 def _filter_none(items: List[Dict]) -> List[Dict]:
     return items
 
 
-def get_video_match_today() -> Union[None, Video]:
-    return _get_video(_filter_match_today)
+def get_video_match_today(dotenv_path: str = None) -> Union[None, Video]:
+    return _get_video(_filter_match_today, dotenv_path)
 
 
 def _filter_match_today(items: List[Dict]) -> List[Dict]:
@@ -39,8 +39,8 @@ def _is_match_today(content: str) -> bool:
         return False
 
 
-def get_videos_within_x_day(x: float = 7) -> List[Video]:
-    return _get_videos(_filter_within_x_day, {"within_x_day": x})
+def get_videos_within_x_day(x: float = 7, dotenv_path: str = None) -> List[Video]:
+    return _get_videos(_filter_within_x_day, {"within_x_day": x}, dotenv_path)
 
 
 def _filter_within_x_day(items: List[Dict], x: float) -> List[Dict]:
@@ -58,8 +58,10 @@ def _is_within_x_day(date_str: str, x: float) -> bool:
         return False
 
 
-def _get_video(filter_method: Callable[[List[Dict]], List[Dict]]) -> Union[None, Video]:
-    youtube = create_youtube()
+def _get_video(
+    filter_method: Callable[[List[Dict]], List[Dict]], dotenv_path: str = None
+) -> Union[None, Video]:
+    youtube = create_youtube(dotenv_path)
 
     playlistitems_list_request = _get_playlistitems_list_request(youtube)
 
@@ -84,9 +86,9 @@ def _get_video(filter_method: Callable[[List[Dict]], List[Dict]]) -> Union[None,
 
 
 def _get_videos(
-    filter_method: Callable[[List[Dict], float], List[Dict]], param: Dict
+    filter_method: Callable[[List[Dict], float], List[Dict]], param: Dict, dotenv_path: str = None
 ) -> List[Video]:
-    youtube = create_youtube()
+    youtube = create_youtube(dotenv_path)
 
     playlistitems_list_request = _get_playlistitems_list_request(youtube)
 
@@ -136,8 +138,8 @@ def _choice_playlist_item(playlist_items: List[Dict]) -> Dict:
         return {}
 
 
-def get_play_list() -> None:
-    youtube = Youtube()
+def get_play_list(dotenv_path: str = None) -> None:
+    youtube = Youtube(dotenv_path=dotenv_path)
 
     params = {"part": "snippet", "mine": True}
     # リクエスト送信

@@ -41,12 +41,12 @@ RETRIABLE_EXCEPTIONS = (
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 
 
-def upload(options: UploadOption) -> Optional[str]:
+def upload(options: UploadOption, dotenv_path: str = None) -> Optional[str]:
     if not os.path.exists(options.file):
         logger.error("not specified valid file to upload. options.file={}".format(options.file))
         return None
 
-    youtube = create_youtube()
+    youtube = create_youtube(dotenv_path=dotenv_path)
     try:
         return _initialize_upload(youtube, options)
     except HttpError as e:

@@ -15,10 +15,12 @@ YOUTUBE_UPLOAD_SCOPE = "https://www.googleapis.com/auth/youtube.upload"
 # https://developers.google.com/youtube/v3/docs?hl=ja
 
 
-def create_youtube() -> Resource:
+def create_youtube(dotenv_path: str = None) -> Resource:
     MISSING_CLIENT_SECRETS_MESSAGE = "missing client secrets."
     YOUTUBE_API_SERVICE_NAME = "youtube"
     YOUTUBE_API_VERSION = "v3"
+
+    load_dotenv(dotenv_path=dotenv_path, verbose=True)
 
     flow = flow_from_clientsecrets(
         _create_client_secret(),
@@ -47,7 +49,6 @@ def create_youtube() -> Resource:
 def _create_client_secret() -> str:
     secret_path = "/tmp/mmyoutube_client_secret.json"
     with open(secret_path, "w") as st:
-        load_dotenv(verbose=True)
         secret = os.environ.get("mmyoutube_client_secret_contents", "dummy")
         st.write(secret)
         st.close()
@@ -57,7 +58,6 @@ def _create_client_secret() -> str:
 def _create_token() -> str:
     oauth_path = "/tmp/mmyoutube_token.json"
     with open(oauth_path, "w") as oa:
-        load_dotenv(verbose=True)
         contents = os.environ.get("mmyoutube_token_contents", "dummy")
         oa.write(contents)
         oa.close()

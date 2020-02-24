@@ -26,8 +26,9 @@ class Youtube:
         self,
         token_path: str = "mmyoutube_new_token.json",
         credential_path: str = "mmyoutube_client_secret.json",
+        dotenv_path: str = None,
     ):
-        load_dotenv(verbose=True)
+        load_dotenv(dotenv_path=dotenv_path, verbose=True)
 
         self._token_path: str = token_path
         self._credential_path: str = credential_path

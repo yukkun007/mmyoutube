@@ -5,8 +5,8 @@ logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-def add_to_play_list(play_list_id: str, vidoe_id: str) -> None:
-    youtube = Youtube()
+def add_to_play_list(play_list_id: str, vidoe_id: str, dotenv_path: str = None) -> None:
+    youtube = Youtube(dotenv_path=dotenv_path)
 
     # パラメータ
     params = {"part": "snippet"}
@@ -39,8 +39,8 @@ def add_to_play_list(play_list_id: str, vidoe_id: str) -> None:
     return playlist_item_id
 
 
-def delete_from_play_list(play_list_item_id: str) -> None:
-    youtube = Youtube()
+def delete_from_play_list(play_list_item_id: str, dotenv_path: str = None) -> None:
+    youtube = Youtube(dotenv_path=dotenv_path)
 
     # パラメータ
     params = {"id": play_list_item_id}
