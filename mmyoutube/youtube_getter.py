@@ -1,7 +1,7 @@
 import random
 import re
 import logging
-from typing import List, Union, Dict, Callable
+from typing import List, Union, Dict, Callable, Optional
 from datetime import datetime, timedelta
 from googleapiclient.discovery import Resource
 from googleapiclient.http import HttpRequest
@@ -82,7 +82,11 @@ def _get_video(
         )
 
     # 最後にもう一度選択
-    return Video(_choice_playlist_item(tmp_choiced_items))
+    choice = _choice_playlist_item(tmp_choiced_items)
+    if choice is not None:
+        return Video(choice)
+    else:
+        return None
 
 
 def _get_videos(
@@ -127,7 +131,7 @@ def _get_playlistitems_list_request(youtube: Resource) -> HttpRequest:
     return playlistitems_list_request
 
 
-def _choice_playlist_item(playlist_items: List[Dict]) -> Dict:
+def _choice_playlist_item(playlist_items: List[Dict]) -> Optional[Dict]:
     items_number = len(playlist_items)
     if items_number > 0:
         index = random.randint(0, items_number - 1)
@@ -135,7 +139,7 @@ def _choice_playlist_item(playlist_items: List[Dict]) -> Dict:
         return playlist_items[index]
     else:
         print("playlist item is empty. choiced no video.")
-        return {}
+        return None
 
 
 def get_play_list(dotenv_path: str = None) -> None:
