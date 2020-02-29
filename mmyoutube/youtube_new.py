@@ -24,8 +24,8 @@ class Youtube:
 
     def __init__(
         self,
-        token_path: str = "mmyoutube_new_token.json",
-        credential_path: str = "mmyoutube_client_secret.json",
+        token_path: str = "/tmp/mmyoutube_new_token.json",
+        credential_path: str = "/tmp/mmyoutube_client_secret.json",
         dotenv_path: str = None,
     ):
         load_dotenv(dotenv_path=dotenv_path, verbose=True)
